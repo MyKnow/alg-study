@@ -13,8 +13,9 @@ int dfs(int here){
     visited[here] = 1;
     for(int b : v[here]){
         if(visited[b]!=0) continue;
-        visited[b] =1;
         sum++;
+        visited[b] =1;
+        
         dfs(b);
     }
     return sum;
