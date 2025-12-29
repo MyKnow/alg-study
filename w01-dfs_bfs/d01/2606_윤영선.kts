@@ -38,6 +38,18 @@ fun main() {
         }
     }
 
+    // DFS 풀이
+    fun dfs(start: Int) {
+        visited.add(start)
+
+        for(i in 1..n) {
+            if( i !in visited && graph[start][i] == 1) {
+                result++
+                dfs(i)
+            }
+        }
+    }
+
     bfs(1)  //  1번으로부터 바이러스가 퍼지기 시작
 
     println(result)
