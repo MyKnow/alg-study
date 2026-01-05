@@ -20,5 +20,7 @@ while k > 0:
         # print(k)
     else:
         idx = (idx + 1) % len(coins)
+    if k == 0:
+        break
 
 print(count)
