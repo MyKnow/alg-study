@@ -22,7 +22,8 @@ fun main() {
 
     while(pq.isNotEmpty()) {
         val (now, d) = pq.poll()
-        if(dist[now] < d) continue
+
+        if(dist[now] < d) continue // 이미 저장되어 있는 값이 최단거리이면, 다음 반복
 
         for( nextVertex in graph[now] ) {
             val (next, cost) = nextVertex
