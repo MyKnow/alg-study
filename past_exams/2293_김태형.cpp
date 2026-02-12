@@ -32,25 +32,27 @@ int N,K;
 int main(){
     ios_base::sync_with_stdio(false);
     cin.tie(NULL);
+    
     cin >> N >> K; 
-    int a[N];
-    int dp[N];
+    vector<int> coin(N);
     for(int i=0; i<N;i++){
-        cin >> a[i];
+        cin >> coin[i];
     }
-    sort(a,a+N,compare);
-    for(int i=0; i<N;i++){
-        //2,5,10이 저장
-        dp[i] = K / a[i];
-    }
+
+    //k+1개의 가짓수를 저장할 수 있는 dp 배열 초기화
+    vector<int> dp(K+1,0);    
+    //0원을 만드는 방법: 동전을 사용하지 않는다.
+    dp[0] = 1;
     //동전갯수만큼 반복해라
     for(int i=0; i<N;i++){
-        //가치가 큰 동전부터 사용해서 k의 가치로 만들어가라
-        for(int j=0; j<dp[i]; j++){
-            
+        //가치가 작은 동전을 사용하는 방법들을 적어나가면서
+        //k의 가치로 만들어가라
+        for(int j=coin[i]; j<=K; j++){
+            dp[j] = dp[j] + dp[j-coin[i]];
         }
     }
 
+    cout << dp[K];
     
     return 0;
 }
